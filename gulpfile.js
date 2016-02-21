@@ -57,11 +57,16 @@ gulp.task('build-js', (done) => {
   })
 });
 
+gulp.task('build-assets', (done) => {
+  return gulp.src(SRC_DIR + 'assets/**/*')
+    .pipe(gulp.dest('./.build/'));
+})
+
 gulp.task('build-extras', (done) => {
   return gulp.src(SRC_DIR + 'extras/*')
     .pipe(flatten())
     .pipe(gulp.dest('./.build/'));
-})
+});
 
 gulp.task('jade', () => {
   return gulp.src('./templates/*.jade')
@@ -86,7 +91,7 @@ gulp.task('dist', ['build'], function() {
 });
 
 
-gulp.task('build', ['build-clean', 'sass', 'jade', 'build-js', 'build-extras']);
+gulp.task('build', ['build-clean', 'sass', 'jade', 'build-js', 'build-extras', 'build-assets']);
 
 gulp.task('default', ['build'], () => {
   let server = gls.static(['.build/','./src/assets/'], 3000);
