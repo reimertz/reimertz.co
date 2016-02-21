@@ -88,7 +88,7 @@ export default class Writer {
   }
 
   start() {
-    if ((this.getLastRead + 50000) >  Date.now()) {
+    if ((this.getLastRead + 5000) >  Date.now()) {
       this.updateLastRead();
       this.writer(true);
       this.isDone();
