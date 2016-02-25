@@ -57,7 +57,6 @@ header {
       backface-visibility: hidden;
       position: relative;
       opacity: 1;
-      display: block;
 
       &:hover {
         opacity: 1;
@@ -110,7 +109,7 @@ header {
 
     }
 
-    description {
+    span {
       left: 0;
       top: 0;
       vertical-align: top;
@@ -121,12 +120,26 @@ header {
       pointer-events: none;
       z-index: 10;
       transition: width 700ms;
-
       padding: 1rem;
     }
 
-    a:hover + description {
+    a:hover + span {
       opacity: 1;
+    }
+
+
+    @include small {
+      display: block;
+
+      span {
+        opacity: 1;
+        left: inherit;
+        top: inherit;
+        vertical-align: top;
+        width: inherit;
+        display: inline;
+        padding: 0 1rem;
+      }
     }
   }
 }
