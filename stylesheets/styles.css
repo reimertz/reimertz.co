@@ -811,8 +811,7 @@ header p {
       -webkit-backface-visibility: hidden;
               backface-visibility: hidden;
       position: relative;
-      opacity: 1;
-      display: block; }
+      opacity: 1; }
       .projects .project a:hover {
         opacity: 1; }
       .projects .project a:hover:before {
@@ -853,7 +852,7 @@ header p {
       .projects .project img:hover {
         z-index: 30;
         opacity: 0.07; }
-    .projects .project description {
+    .projects .project span {
       left: 0;
       top: 0;
       vertical-align: top;
@@ -866,5 +865,16 @@ header p {
       -webkit-transition: width 700ms;
       transition: width 700ms;
       padding: 1rem; }
-    .projects .project a:hover + description {
+    .projects .project a:hover + span {
       opacity: 1; }
+    @media only screen and (max-width: 480px) {
+      .projects .project {
+        display: block; }
+        .projects .project span {
+          opacity: 1;
+          left: inherit;
+          top: inherit;
+          vertical-align: top;
+          width: inherit;
+          display: inline;
+          padding: 0 1rem; } }
