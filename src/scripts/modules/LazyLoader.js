@@ -1,7 +1,5 @@
 //Creator Pierre Reimertz MIT ETC ETC
 
-
-
 export default class LazyLoader {
   constructor(options = {}) {
 

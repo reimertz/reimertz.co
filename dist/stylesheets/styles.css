@@ -375,7 +375,10 @@ html {
   overflow-y: auto; }
   @media only screen and (max-width: 480px) {
     html {
-      font-size: 0.8rem; } }
+      font-size: 0.5rem; }
+      html body {
+        max-width: 80vw;
+        margin-left: 10vw; } }
   @media only screen and (min-width: 481px) {
     html {
       font-size: 0.75rem; } }
@@ -759,6 +762,56 @@ img-3d {
   .me:after {
     background-image: url("/images/me.png"); }
 
+@-webkit-keyframes hueRotation {
+  0% {
+    -webkit-filter: hue-rotate(0deg);
+            filter: hue-rotate(0deg); }
+  25% {
+    -webkit-filter: hue-rotate(90deg);
+            filter: hue-rotate(90deg); }
+  50% {
+    -webkit-filter: hue-rotate(180deg);
+            filter: hue-rotate(180deg); }
+  75% {
+    -webkit-filter: hue-rotate(270deg);
+            filter: hue-rotate(270deg); }
+  100% {
+    -webkit-filter: hue-rotate(360deg);
+            filter: hue-rotate(360deg); } }
+
+@keyframes hueRotation {
+  0% {
+    -webkit-filter: hue-rotate(0deg);
+            filter: hue-rotate(0deg); }
+  25% {
+    -webkit-filter: hue-rotate(90deg);
+            filter: hue-rotate(90deg); }
+  50% {
+    -webkit-filter: hue-rotate(180deg);
+            filter: hue-rotate(180deg); }
+  75% {
+    -webkit-filter: hue-rotate(270deg);
+            filter: hue-rotate(270deg); }
+  100% {
+    -webkit-filter: hue-rotate(360deg);
+            filter: hue-rotate(360deg); } }
+
+[lazy-status] {
+  -webkit-transition: -webkit-filter 1500ms;
+  transition: -webkit-filter 1500ms;
+  transition: filter 1500ms;
+  transition: filter 1500ms, -webkit-filter 1500ms; }
+
+[lazy-status="fetching"] {
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-duration: 3000ms;
+          animation-duration: 3000ms;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-name: hueRotation;
+          animation-name: hueRotation; }
+
 main {
   display: block;
   position: relative;
@@ -843,12 +896,10 @@ header p {
       padding: 0;
       -webkit-backface-visibility: hidden;
               backface-visibility: hidden;
-      -webkit-transition: 500ms;
-      transition: 500ms;
       position: relative;
       opacity: 1;
-      -webkit-transition: 200ms;
-      transition: 200ms; }
+      -webkit-transition: opacity 200ms filter 2000ms;
+      transition: opacity 200ms filter 2000ms; }
       .projects .project img:hover {
         z-index: 30;
         opacity: 0.07; }
@@ -875,7 +926,8 @@ header p {
         .projects .project a:hover + span {
           opacity: 1; }
         .projects .project img {
-          max-width: 50%; }
+          max-width: 50%;
+          height: auto; }
           .projects .project img:hover {
             opacity: 1; }
         .projects .project span {
