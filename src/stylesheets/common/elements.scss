@@ -7,7 +7,11 @@ html {
   overflow-y: auto;
 
   @include small {
-    font-size: 0.8rem;
+    font-size: 0.5rem;
+    body {
+      max-width: 80vw;
+      margin-left: 10vw;
+    }
   }
 
   @include medium {
@@ -49,6 +53,7 @@ $link-colors: #1BFF90;
 p, p-3d {
   @each $color in $link-colors {
   $i: index($link-colors, $color);
+
   a:nth-child(n + #{$i}) {
     padding: 0 0.5rem;
     color: $color;
@@ -58,7 +63,6 @@ p, p-3d {
     &:hover {
       color: white;
       background-color: $color;
-
     }
   }
 }

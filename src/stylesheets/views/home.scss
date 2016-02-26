@@ -1,4 +1,5 @@
 @import '../components/3d-me';
+@import '../components/lazy-loader';
 
 main {
   display: block;
@@ -97,10 +98,9 @@ header {
       line-height: 0;
       padding: 0;
       backface-visibility: hidden;
-      transition: 500ms;
       position: relative;
       opacity: 1;
-      transition: 200ms;
+      transition: opacity 200ms filter 2000ms;
 
       &:hover {
         z-index: 30;
@@ -130,6 +130,22 @@ header {
 
     @include small {
       display: block;
+      a {
+        display: inline;
+      }
+
+      a:hover + span {
+        opacity: 1;
+      }
+
+      img {
+        max-width: 50%;
+        height: auto;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
 
       span {
         opacity: 1;

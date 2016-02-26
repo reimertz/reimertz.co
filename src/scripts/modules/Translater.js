@@ -1,7 +1,9 @@
+//Creator Pierre Reimertz MIT ETC ETC
+
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent),
       moveEvent = isMobile ? 'touchmove' : 'mousemove';
 
-export default class Writer {
+export default class Translater {
 
   constructor(element, xRotation, yRotation) {
     this.xRotation = xRotation;

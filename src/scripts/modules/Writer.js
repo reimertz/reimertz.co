@@ -1,3 +1,5 @@
+//Creator Pierre Reimertz MIT ETC ETC
+
 const timeoutMap = new Map();
       timeoutMap.set('#', 50/2); //delete
       timeoutMap.set('@', 250/2); //pause
@@ -88,7 +90,7 @@ export default class Writer {
   }
 
   start() {
-    if ((this.getLastRead + 5000) >  Date.now()) {
+    if ((this.getLastRead + 5000) < Date.now()) {
       this.updateLastRead();
       this.writer(true);
       this.isDone();
