@@ -4,11 +4,11 @@ export default class LazyLoader {
   constructor(options = {}) {
 
     this.elements = [].slice.call(document.querySelectorAll(options.selector || '[lazy-src]'));
-    this.offset = !!options.offset || (document.body.getBoundingClientRect().height/2);
-    this.lines = !!options.lines || 3;
-    this.throttle = !!options.throttle || 350;
-    this.checkOnLoad = !!options.checkOnLoad || true;
-    this.beStupidAndFakeSlowness = !!options.beStupidAndFakeSlowness || false;
+    this.offset = options.offset || (document.body.getBoundingClientRect().height/2);
+    this.lines = options.lines || 3;
+    this.throttle = options.throttle || 350;
+    this.checkOnLoad = options.checkOnLoad || true;
+    this.fakeSlowness = options.fakeSlowness || false;
 
     this._queue = [];
     this._listener = false;
@@ -26,15 +26,16 @@ export default class LazyLoader {
   }
 
   imageLoaded(loadedImage) {
-    let imageToFetch;
+    let nextImageToFetch;
 
     loadedImage.setAttribute('lazy-status', 'loaded');
 
-    this._queue = this._queue.filter((element)=> {if(loadedImage !== element) return element});
+    this._queue = this._queue.filter((queuedImage)=> {if(queuedImage !== loadedImage) return queuedImage});
 
-    imageToFetch = this._queue.shift();
-    if(!!imageToFetch) {
-      this.fetchImage(imageToFetch);
+    nextImageToFetch = this._queue.shift();
+
+    if(!!nextImageToFetch) {
+      this.fetchImage(nextImageToFetch);
     }
   }
 
@@ -47,14 +48,13 @@ export default class LazyLoader {
   }
 
   addImageToQueue(element) {
-    if(this.beStupidAndFakeSlowness && (Math.random() > 0.66)) {
+    if(!!this.fakeSlowness && (Math.random() > this.fakeSlowness.percentageOfImages)) {
       element.setAttribute('lazy-status', 'fetching');
       setTimeout(() => {
         this.checkIfshouldFetchNow(element);
-      }, 5500 * Math.random() + 2000);
+      }, this.fakeSlowness.delayBeforeFetch());
     }
     else {
-      console.log('asdasdads');
       this.checkIfshouldFetchNow(element);
     }
   }

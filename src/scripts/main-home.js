@@ -19,8 +19,13 @@ const ll = new LazyLoader({ selector: '[lazy-src]',
                             offset: (document.body.getBoundingClientRect().height/2),
                             lines: 5,
                             throttle: 300,
-                            beStupidAndFakeSlowness: true,
-                            checkOnLoad: false});
+                            checkOnLoad: false,
+                            fakeSlowness: {
+                              delayBeforeFetch: function() { return (Math.random() * 5500) + 2000 },
+                              percentageOfImages: 0.66
+
+                            }
+                          });
 
 requestAnimationFrame(function(){
   writer.start();
