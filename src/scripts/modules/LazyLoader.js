@@ -3,7 +3,7 @@
 export default class LazyLoader {
   constructor(options = {}) {
 
-    this.elements = [].slice.call(document.querySelectorAll(options.selector || '[lazy-src]'));
+    this.elements = [].slice.call(document.querySelectorAll(options.selector || '[data-lazy-src]'));
     this.offset = options.offset || (document.body.getBoundingClientRect().height/2);
     this.lines = options.lines || 3;
     this.throttle = options.throttle || 350;
@@ -20,7 +20,7 @@ export default class LazyLoader {
   }
 
   fetchImage(image) {
-    image.src = image.getAttribute('lazy-src');
+    image.src = image.getAttribute('data-lazy-src');
     image.setAttribute('lazy-status', 'fetching');
     image.addEventListener('load', (event) => {this.imageLoaded(image)}, false);
   }
@@ -64,7 +64,6 @@ export default class LazyLoader {
 
     this._throttler = setTimeout(() => {
         this._throttler = false;
-
 
       if(this.elements.length === 0) return;
       this.elements = this.elements.map((element) => {
