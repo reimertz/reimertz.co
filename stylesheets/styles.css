@@ -796,13 +796,13 @@ img-3d {
     -webkit-filter: hue-rotate(360deg);
             filter: hue-rotate(360deg); } }
 
-[lazy-status] {
+[data-lazy-status] {
   -webkit-transition: -webkit-filter 1500ms;
   transition: -webkit-filter 1500ms;
   transition: filter 1500ms;
   transition: filter 1500ms, -webkit-filter 1500ms; }
 
-[lazy-status="fetching"] {
+[data-lazy-status="loading"] {
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
   -webkit-animation-duration: 3000ms;
