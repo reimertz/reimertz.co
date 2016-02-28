@@ -20,11 +20,11 @@
   }
 }
 
-[lazy-status] {
+[data-lazy-status] {
   transition: filter 1500ms;
 }
 
-[lazy-status="fetching"]{
+[data-lazy-status="loading"] {
   animation-fill-mode: forwards;
   animation-duration: 3000ms;
   animation-iteration-count: infinite;

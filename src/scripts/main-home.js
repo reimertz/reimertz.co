@@ -15,14 +15,12 @@ $http://github.com/reimertz$github$ | $http://twitter.com/reimertz$twitter$ | $m
 const writer = new Writer(document.querySelectorAll('.writer'), introText);
 const translater = new Translater(document.querySelector('main'), 10, 15);
 const rr = new RickRolled(5000, true, document.querySelector('all-my-secret-api-keys'));
-const ll = new LazyLoader({ selector: '[data-lazy-src]',
-                            offset: (document.body.getBoundingClientRect().height/2),
-                            lines: 5,
-                            throttle: 300,
-                            checkOnLoad: false,
+const ll = new LazyLoader({ lines: 5,
+                            throttle: 500,
+                            checkOnStart: false,
                             fakeSlowness: {
-                              delayBeforeFetch: function() { return (Math.random() * 5500) + 2000 },
-                              percentageOfImages: 0.66
+                              delayBeforeFetch: () => { return Math.random() * 3500 + 1000},
+                              percentageOfImages: 0.3
 
                             }
                           });

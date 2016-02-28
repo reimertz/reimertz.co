@@ -1,97 +1,131 @@
 //Creator Pierre Reimertz MIT ETC ETC
 
 export default class LazyLoader {
-  constructor(options = {}) {
 
-    this.elements = [].slice.call(document.querySelectorAll(options.selector || '[data-lazy-src]'));
-    this.offset = options.offset || (document.body.getBoundingClientRect().height/2);
-    this.lines = options.lines || 3;
-    this.throttle = options.throttle || 350;
-    this.checkOnLoad = options.checkOnLoad || true;
-    this.fakeSlowness = options.fakeSlowness || false;
+  constructor({
+    attribute = 'data-lazy',
+    offset = (document.body.getBoundingClientRect().height/2),
+    lines = 3,
+    throttle = 350,
+    autoStart = true,
+    checkOnStart = true,
+    fakeSlowness = false,
+    placeholderImages = [
+    /* wide   */  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAvYAAAQAAQMAAACwNI9dAAAAA1BMVEUb/5DUIh99AAAAdUlEQVR42u3BAQ0AAADCoPdP7ewBFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN4APAAGN6DpwAAAAAElFTkSuQmCC',
+    /* tall   */  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWAQMAAAAGz+OhAAAAA1BMVEUb/5DUIh99AAAAGklEQVR4Ae3BAQEAAAQDMP1TiwHfVgAAwHoNC7gAASist30AAAAASUVORK5CYII=',
+    /* square */  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACWAQMAAABelSeRAAAAA1BMVEUb/5DUIh99AAAAHElEQVR4Xu3AAQkAAADCMPunNsdhWwoAAAAAABwW2gABlO2L2AAAAABJRU5ErkJggg=='
+  ]})
+  {
+    this.attribute = attribute
+    this.autoStart = autoStart
+    this.checkOnStart = checkOnStart
+    this.offset = offset
+    this.lines = lines
+    this.throttle = throttle
+    this.fakeSlowness = fakeSlowness
+    this.placeholderImages = placeholderImages
 
-    this._queue = [];
-    this._listener = false;
-    this._throttler = false;
-    this._placeholderImages = [
-      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWAQMAAAAGz+OhAAAAA1BMVEUb/5DUIh99AAAAGklEQVR4Ae3BAQEAAAQDMP1TiwHfVgAAwHoNC7gAASist30AAAAASUVORK5CYII=',
-      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACWAQMAAABelSeRAAAAA1BMVEUb/5DUIh99AAAAHElEQVR4Xu3AAQkAAADCMPunNsdhWwoAAAAAABwW2gABlO2L2AAAAABJRU5ErkJggg=='
-    ];
-  }
+    this._elements          = [].slice.call(document.querySelectorAll(`[${ this.attribute }]`))
+    this._queue             = []
+    this._listener          = false
+    this._throttler         = false
 
-  fetchImage(image) {
-    image.src = image.getAttribute('data-lazy-src');
-    image.setAttribute('lazy-status', 'fetching');
-    image.addEventListener('load', (event) => {this.imageLoaded(image)}, false);
-  }
+    this.onLoad = this.onLoad.bind(this)
 
-  imageLoaded(loadedImage) {
-    let nextImageToFetch;
-
-    loadedImage.setAttribute('lazy-status', 'loaded');
-
-    this._queue = this._queue.filter((queuedImage)=> {if(queuedImage !== loadedImage) return queuedImage});
-
-    nextImageToFetch = this._queue.shift();
-
-    if(!!nextImageToFetch) {
-      this.fetchImage(nextImageToFetch);
+    if (this.autoStart) {
+      this.start()
     }
   }
 
-  checkIfshouldFetchNow(element) {
-    this._queue.push(element);
+  start() {
+    if (!!this._listener) return
+    if (this.checkOnStart) this.check()
 
-    if(this._queue.length <= this.lines) {
-      this.fetchImage(element);
-    }
+    this._elements.map(element => {
+      if (!element.src || element.src === '') {
+        element.src = this.placeholderImages[Math.floor(Math.random()*(this.placeholderImages.length-1) + 0.5)]
+      }
+    })
+
+    this._listener = event => {this.check()}
+
+    document.addEventListener('scroll', this._listener, false)
   }
 
-  addImageToQueue(element) {
-    if(!!this.fakeSlowness && (Math.random() > this.fakeSlowness.percentageOfImages)) {
-      element.setAttribute('lazy-status', 'fetching');
-      setTimeout(() => {
-        this.checkIfshouldFetchNow(element);
-      }, this.fakeSlowness.delayBeforeFetch());
-    }
-    else {
-      this.checkIfshouldFetchNow(element);
-    }
+  stop() {
+    document.removeEventListener('scroll', this._listener)
+    this._listener = false
+    this._throttler = false
   }
 
-  checkScroll() {
-    if(this._throttler) return;
+  check() {
+    if (this._throttler) return
+    if (this._elements.length === 0) return this.stop()
 
     this._throttler = setTimeout(() => {
-        this._throttler = false;
+        this._throttler = false
 
-      if(this.elements.length === 0) return;
-      this.elements = this.elements.map((element) => {
-        if(element === false) return false;
+      this._elements = this._elements.map(element => {
+        if (element === false) return false
+        if (element.nodeName !== "IMG") return false
 
-        if((element.getBoundingClientRect().top - this.offset)  < document.body.scrollTop) {
-          this.addImageToQueue(element);
-          return false;
+        if ((element.getBoundingClientRect().top - this.offset)  < document.body.scrollTop) {
+          this.queue(element)
+          return false
         }
 
         else {
           return element
         }
-      });
+      })
 
-      this.elements = this.elements.filter((element) => { if(element) return element });
-    }, this.throttle);
+      this._elements = this._elements.filter(element => {
+        if (element) return element
+      })
 
+    }, this.throttle)
   }
 
-  start() {
-    if(!!this._listener) return;
-    if(this.checkOnLoad) this.checkScroll();
+  queue(element) {
+    this._queue.push(element)
 
-    this.elements.map((element) => {
-      if (!element.src || element.src === '') element.src = this._placeholderImages[Math.floor(Math.random() + 0.5)]
-    });
+    if (this._queue.length <= this.lines) {
+      this.load(element)
+    }
+  }
 
-    this._listener = document.addEventListener('scroll', (event) => {this.checkScroll()}, false);
+  load(element) {
+    this.setStatus(element, 'loading')
+
+    element.addEventListener('load', this.onLoad, false)
+
+    if (!!this.fakeSlowness && (Math.random() <= (this.fakeSlowness.percentageOfImages))) {
+      setTimeout(() => {
+        element.src = element.getAttribute(this.attribute)
+      }, this.fakeSlowness.delayBeforeFetch())
+    }
+    else {
+      element.src = element.getAttribute(this.attribute)
+    }
+  }
+
+  onLoad(event) {
+    let nextElement
+    let loadedElement = event.target
+
+    loadedElement.removeEventListener('load', this.onLoad, false)
+    this.setStatus(loadedElement, 'loaded')
+
+    this._queue = this._queue.filter(queuedElement => {
+      if (queuedElement !== loadedElement) return queuedElement
+    })
+
+    nextElement = this._queue.shift()
+
+    if (!!nextElement) this.load(nextElement)
+  }
+
+  setStatus(element, status) {
+    element.setAttribute(this.attribute + '-status', status)
   }
 }
