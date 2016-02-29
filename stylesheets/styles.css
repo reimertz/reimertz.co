@@ -10,6 +10,17 @@
     background-color: #ee324b;
     color: white; }
 
+.tre-d {
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden; }
+  .tre-d *, .tre-d *:before, .tre-d *:after {
+    -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden; }
+
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Set default font family to sans-serif.
@@ -182,8 +193,7 @@ figure {
  * Address differences between Firefox and other browsers.
  */
 hr {
-  -webkit-box-sizing: content-box;
-          box-sizing: content-box;
+  box-sizing: content-box;
   height: 0; }
 
 /**
@@ -289,8 +299,7 @@ input {
  */
 input[type="checkbox"],
 input[type="radio"] {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   /* 1 */
   padding: 0;
   /* 2 */ }
@@ -311,8 +320,7 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
-  -webkit-box-sizing: content-box;
-          box-sizing: content-box;
+  box-sizing: content-box;
   /* 2 */ }
 
 /**
@@ -391,10 +399,7 @@ body {
   padding-top: 10vh;
   max-width: 100vw;
   background: white;
-  -webkit-transition: background-color 500ms;
   transition: background-color 500ms;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column; }
@@ -403,18 +408,9 @@ main, footer {
   display: block;
   max-width: 60rem;
   margin: 0 auto;
-  position: relative;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden; }
+  position: relative; }
 
 main {
-  -webkit-transform: rotateX(-10deg) rotateY(10deg);
-          transform: rotateX(-10deg) rotateY(10deg);
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-  -webkit-transition: 200ms;
-  transition: 200ms;
-  -webkit-box-flex: 1;
   -webkit-flex: 1 0 auto;
       -ms-flex: 1 0 auto;
           flex: 1 0 auto; }
@@ -613,8 +609,6 @@ a-box {
 p-3d,
 p-3d-medium,
 p-3d-large {
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
   display: inline-block;
   margin: 2rem 0;
   display: inline-block;
@@ -689,9 +683,6 @@ plane-3d {
 img-3d {
   display: block;
   position: relative; }
-  img-3d, img-3d:after {
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden; }
   img-3d:before {
     position: absolute;
     top: 0;
@@ -736,7 +727,8 @@ img-3d {
   -webkit-animation-name: iGrow;
           animation-name: iGrow;
   background-size: 20.619rem 30rem;
-  width: 20.619rem; }
+  width: 20.619rem;
+  transition: 2s filter linear; }
   a-box:hover + a-box + a-box + a-box + .me:after {
     opacity: 1;
     background-image: url("/images/me3.png");
@@ -797,7 +789,6 @@ img-3d {
             filter: hue-rotate(360deg); } }
 
 [data-lazy-status] {
-  -webkit-transition: -webkit-filter 1500ms;
   transition: -webkit-filter 1500ms;
   transition: filter 1500ms;
   transition: filter 1500ms, -webkit-filter 1500ms; }
@@ -815,21 +806,9 @@ img-3d {
 main {
   display: block;
   position: relative;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
   -webkit-transform: rotateX(-10deg) rotateY(10deg);
           transform: rotateX(-10deg) rotateY(10deg);
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-  -webkit-transition: 200ms;
   transition: 200ms; }
-  main > *,
-  main > * * {
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-    -webkit-transform-style: preserve-3d;
-            transform-style: preserve-3d;
-    display: inline-block; }
 
 header .me {
   display: block; }
@@ -841,100 +820,71 @@ header .writer {
 header p {
   max-width: 50rem; }
 
-.thoughts {
-  padding: 0;
-  text-align: left;
-  position: relative;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden; }
-  .thoughts > p-3d-medium {
-    display: block; }
-
 .projects {
   padding: 0;
   text-align: left;
-  position: relative;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden; }
-  .projects > p-3d-medium {
-    display: block; }
+  position: relative; }
   .projects .project {
-    margin: 2rem 2rem 2rem 0; }
-    .projects .project a {
-      -webkit-backface-visibility: hidden;
-              backface-visibility: hidden;
-      position: relative;
-      opacity: 1; }
-      .projects .project a:hover {
+    display: inline-block;
+    margin: 2rem 2rem 2rem 0;
+    position: relative; }
+    .projects .project:before {
+      pointer-events: none;
+      z-index: -1;
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      -webkit-transform: translateZ(-80rem);
+              transform: translateZ(-80rem);
+      content: '';
+      background: black;
+      opacity: 0.045; }
+    .projects .project:hover:before {
+      opacity: 0.09; }
+    .projects .project:hover {
+      z-index: 10; }
+      .projects .project:hover span {
         opacity: 1; }
-      .projects .project a:hover:before {
-        opacity: 0.07; }
-      .projects .project a:before {
-        z-index: -1;
-        display: block;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        -webkit-transform: translateZ(-80rem);
-                transform: translateZ(-80rem);
-        content: '';
-        background: black;
-        opacity: 0.045;
-        -webkit-transition: opacity 200ms;
-        transition: opacity 200ms; }
-        body.scrolled-to-projects .projects .project a:before {
-          background: white; }
-      body.scrolled-to-projects .projects .project a:hover + p {
+      .projects .project:hover img {
         opacity: 1; }
     .projects .project img {
       height: 150px;
       display: inline-block;
-      font-size: 0;
-      line-height: 0;
-      padding: 0;
-      -webkit-backface-visibility: hidden;
-              backface-visibility: hidden;
-      position: relative;
-      opacity: 1;
-      -webkit-transition: opacity 200ms filter 2000ms;
+      z-index: 0;
+      opacity: 0.65;
       transition: opacity 200ms filter 2000ms; }
-      .projects .project img:hover {
-        z-index: 30;
-        opacity: 0.07; }
     .projects .project span {
-      left: 0;
-      top: 0;
-      vertical-align: top;
-      width: inherit;
-      display: inline-block;
-      position: absolute;
-      opacity: 0;
       pointer-events: none;
-      z-index: 10;
-      -webkit-transition: width 700ms;
-      transition: width 700ms;
-      padding: 1rem; }
-    .projects .project a:hover + span {
-      opacity: 1; }
+      background: black;
+      color: white;
+      width: 100%;
+      display: block;
+      position: fixed;
+      opacity: 0;
+      transition: 300ms;
+      padding: 1em;
+      z-index: 10; }
     @media only screen and (max-width: 480px) {
       .projects .project {
         display: block; }
         .projects .project a {
           display: inline; }
-        .projects .project a:hover + span {
-          opacity: 1; }
         .projects .project img {
           max-width: 50%;
           height: auto; }
           .projects .project img:hover {
             opacity: 1; }
         .projects .project span {
+          position: absolute;
           opacity: 1;
-          left: inherit;
-          top: inherit;
+          color: black;
+          background: transparent;
+          left: inherit !important;
+          width: 50%;
+          top: inherit !important;
           vertical-align: top;
-          width: inherit;
           display: inline;
           padding: 0 1rem; } }
