@@ -2,10 +2,6 @@ img-3d {
   display: block;
   position: relative;
 
-  &, &:after {
-    backface-visibility: hidden;
-  }
-
   &:before {
     position: absolute;
     top: 0;

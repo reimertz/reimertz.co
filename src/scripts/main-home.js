@@ -2,6 +2,7 @@ import Writer from './modules/Writer';
 import Translater from './modules/Translater';
 import RickRolled from './modules/RickRolled';
 import LazyLoader from './modules/LazyLoader';
+import CursorFriend from './modules/CursorFriend';
 
 const echo = require('echo-js')(document.body);
 const introText = `hi, my name is piérre reimertz.
@@ -13,7 +14,7 @@ $http://github.com/reimertz$github$ | $http://twitter.com/reimertz$twitter$ | $m
 
 
 const writer = new Writer(document.querySelectorAll('.writer'), introText);
-const translater = new Translater(document.querySelector('main'), 10, 15);
+const translater = new Translater(document.querySelector('.tre-d'), 10, 15);
 const rr = new RickRolled(5000, true, document.querySelector('all-my-secret-api-keys'));
 const ll = new LazyLoader({ lines: 5,
                             throttle: 500,
@@ -24,12 +25,14 @@ const ll = new LazyLoader({ lines: 5,
 
                             }
                           });
+const cF = new CursorFriend({selector: '.project', spanSelector: 'span'});
 
+console.log(cF);
 requestAnimationFrame(function(){
   writer.start();
   translater.start();
   rr.start();
   ll.start();
+  cF.start();
 });
-
 

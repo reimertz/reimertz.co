@@ -15,3 +15,13 @@
     color: white;
   }
 }
+
+.tre-d {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+
+  & *, *:before, *:after {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+  }
+}

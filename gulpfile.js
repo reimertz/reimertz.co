@@ -21,10 +21,12 @@ const autoprefixer = require('autoprefixer'),
       JS_BUILD = __dirname + '/src/scripts';
 
 
-gulp.task('sass', function () {
+gulp.task('stylesheets', function () {
   let processors = [
-    autoprefixer({browsers: ['last 10 version']})
+    autoprefixer({browsers: ['last 4 version']})
   ];
+
+  del.sync('./.build/stylesheets');
 
   return gulp.src(CSS_BUILD + '/builder.scss')
     .pipe(sass().on('error', sass.logError))
@@ -33,9 +35,11 @@ gulp.task('sass', function () {
     .pipe(gulp.dest('./.build/stylesheets/'));
 });
 
-gulp.task('build-js', (done) => {
+gulp.task('scripts', (done) => {
   glob(JS_BUILD + '/main-**.js', (err, files) => {
     if(err) done(err);
+
+    del.sync('./.build/scripts');
 
     var tasks = files.map((entry) => {
       return browserify({
@@ -57,49 +61,39 @@ gulp.task('build-js', (done) => {
   })
 });
 
-gulp.task('build-assets', (done) => {
+gulp.task('assets', (done) => {
+  del.sync('./.build/assets');
+
   return gulp.src(SRC_DIR + 'assets/**/*')
     .pipe(gulp.dest('./.build/'));
 })
 
-gulp.task('build-extras', (done) => {
+gulp.task('extras', (done) => {
+  del.sync('./.build/extras');
+
   return gulp.src(SRC_DIR + 'extras/*')
     .pipe(flatten())
     .pipe(gulp.dest('./.build/'));
 });
 
-gulp.task('jade', () => {
-  return gulp.src('./templates/*.jade')
+gulp.task('templates', () => {
+  del.sync('./.build/*.html');
+  return gulp.src('./src/templates/*.jade')
     .pipe(jade({
       pretty: true
     }))
     .pipe(gulp.dest('./.build/'));
 });
 
-gulp.task('build-clean', (done) => {
-  return del('./.build/**/*');
-});
+gulp.task('build', ['stylesheets', 'templates', 'scripts', 'extras', 'assets']);
 
-gulp.task('dist', ['build'], function() {
-  return gulp.src('./.build/**/*')
-    .pipe(gulp.dest('dist/'));
-});
-
- gulp.task('deploy', ['dist'], function() {
-  return gulp.src('dist/**/*')
-   .pipe(ghPages());
-});
-
-
-gulp.task('build', ['build-clean', 'sass', 'jade', 'build-js', 'build-extras', 'build-assets']);
-
-gulp.task('default', ['build'], () => {
+gulp.task('dev', ['build'], () => {
   let server = gls.static(['.build/','./src/assets/'], 3000);
   server.start();
 
-  gulp.watch(JS_BUILD + '/**/*.js', ['build-js']);
-  gulp.watch(CSS_BUILD + '/*/*.scss', ['sass']);
-  gulp.watch('./templates/*.jade', ['jade']);
+  gulp.watch(JS_BUILD + '/**/*.js', ['scripts']);
+  gulp.watch(CSS_BUILD + '/*/*.scss', ['stylesheets']);
+  gulp.watch('./src/templates/*.jade', ['templates']);
 
   gulp.watch(['./.build/**/*.html', './.build/**/*.js', './.build/**/*.css'],  (file) => {
     server.notify.apply(server, [file]);
@@ -113,3 +107,8 @@ gulp.task('default', ['build'], () => {
     server.notify.apply(server, [file]);
   });
 })
+
+gulp.task('deploy', ['build'], function() {
+  return gulp.src('./.build/**/*')
+   .pipe(ghPages());
+});

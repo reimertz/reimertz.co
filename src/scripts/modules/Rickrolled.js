@@ -66,7 +66,7 @@ const mdRolled = [
 
 export default class RickRolled {
 
-  constructor(delay, shouldHide, element) {
+  constructor (delay, shouldHide, element) {
     if (element) this.el = element;
     else {
       this.el = document.currentScript.parentNode;

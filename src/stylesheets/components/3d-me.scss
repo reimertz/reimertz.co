@@ -39,6 +39,9 @@ $me-size: 30rem;
   animation-name: iGrow;
   background-size: $me-size * 0.6873 $me-size;
   width: $me-size * 0.6873;
+  transition: 2s filter linear;
+
+
 
   &:before {
     background-image: url("/images/me.png");

@@ -37,13 +37,9 @@ main, footer {
   max-width: $max-width;
   margin: 0 auto;
   position: relative;
-  backface-visibility: hidden;
 }
 
 main {
-  transform: rotateX(-10deg) rotateY(10deg);
-  transform-style: preserve-3d;
-  transition: 200ms;
   flex: 1 0 auto;
 }
 
