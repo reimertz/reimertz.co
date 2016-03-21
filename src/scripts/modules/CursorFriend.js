@@ -22,7 +22,8 @@ export default class CursorFriend {
   }
 
   onEnter(event) {
-    event.currentTarget.addEventListener('mousemove', this.onMove)
+    document.body.setAttribute('data-project-is-hovered', 'true');
+    //event.currentTarget.addEventListener('mousemove', this.onMove)
   }
 
   onMove(event) {
@@ -31,12 +32,13 @@ export default class CursorFriend {
     let x = event.screenX
     let y = event.screenY
 
-    span.style.top  = (y/10 + 50) + 'px'
+    span.style.top = (y/10 - 50) + 'px'
     span.style.left = (x/10 - 50) + 'px'
   }
 
   onLeave(event) {
-    event.currentTarget.removeEventListener('mousemove', this.onMove)
+    document.body.setAttribute('data-project-is-hovered', 'false');
+    //event.currentTarget.removeEventListener('mousemove', this.onMove)
   }
 
   stop() {

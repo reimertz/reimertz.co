@@ -30,8 +30,13 @@ header {
 
   .project {
     display: inline-block;
-    margin: 2rem 2rem 2rem 0;
     position: relative;
+    transition: opacity 250ms;
+    margin: 2rem 2rem 2rem 0;
+
+    body[data-project-is-hovered="true"] &:not(:hover) {
+      opacity: 0.1  ;
+    }
 
     &:before {
       pointer-events: none;
@@ -72,16 +77,19 @@ header {
     }
 
     span {
+      padding: 1rem;
+      top: 100%;
       pointer-events: none;
       background: rgba(black,1);
       color: white;
-      width: 100%;
       display: block;
       position: absolute;
       opacity: 0;
       transition: 300ms;
-      padding: 1em;
-      z-index: 10;
+
+      b {
+        color: $green;
+      }
     }
 
     @include small {
@@ -110,7 +118,6 @@ header {
         top: inherit !important;
         vertical-align: top;
         display: inline;
-        padding: 0 1rem;
       }
     }
   }
