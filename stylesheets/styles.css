@@ -826,8 +826,11 @@ header p {
   position: relative; }
   .projects .project {
     display: inline-block;
-    margin: 2rem 2rem 2rem 0;
-    position: relative; }
+    position: relative;
+    transition: opacity 250ms;
+    margin: 2rem 2rem 2rem 0; }
+    body[data-project-is-hovered="true"] .projects .project:not(:hover) {
+      opacity: 0.1; }
     .projects .project:before {
       pointer-events: none;
       z-index: -1;
@@ -857,16 +860,17 @@ header p {
       opacity: 0.65;
       transition: opacity 200ms filter 2000ms; }
     .projects .project span {
+      padding: 1rem;
+      top: 100%;
       pointer-events: none;
       background: black;
       color: white;
-      width: 100%;
       display: block;
       position: absolute;
       opacity: 0;
-      transition: 300ms;
-      padding: 1em;
-      z-index: 10; }
+      transition: 300ms; }
+      .projects .project span b {
+        color: #1BFF90; }
     @media only screen and (max-width: 480px) {
       .projects .project {
         display: block; }
@@ -886,5 +890,4 @@ header p {
           width: 50%;
           top: inherit !important;
           vertical-align: top;
-          display: inline;
-          padding: 0 1rem; } }
+          display: inline; } }
