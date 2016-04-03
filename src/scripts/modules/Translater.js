@@ -13,6 +13,14 @@ export default class Translater {
     this.throttler = false;
   }
 
+  handleScroll(scrollY){
+    let scrolledPercentage = (scrollY / document.body.getBoundingClientRect().height) * this.xRotation,
+        x = (scrolledPercentage/2) - this.xRotation,
+        y = this.yRotation - scrolledPercentage;
+
+    this.el.style.transform = `rotateX(${x}deg) rotateY(${y}deg)`;
+  }
+
   handleMove(clientX, clientY){
     let x = ((1 - (clientY / window.innerHeight)) * -1) * this.xRotation,
         y = (clientX / window.innerWidth) * this.yRotation;
@@ -28,11 +36,10 @@ export default class Translater {
 
         this.throttler = false;
         requestAnimationFrame(() => {
-          if(event.targetTouches) this.handleMove(event.targetTouches[0].clientX, event.targetTouches[0].clientY);
-          else                    this.handleMove(event.clientX, event.clientY);
+          if(isMobile) this.handleScroll(window.scrollY);
+          else         this.handleMove(event.clientX, event.clientY);
         });
       }, 50);
-
     });
   }
 

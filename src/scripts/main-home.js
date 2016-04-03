@@ -14,7 +14,7 @@ $http://github.com/reimertz$github$ | $http://twitter.com/reimertz$twitter$ | $m
 
 
 const writer = new Writer(document.querySelectorAll('.writer'), introText);
-const translater = new Translater(document.querySelector('.tre-d'), 10, 15);
+const translater = new Translater(document.querySelector('.tre-d'), 10, 10);
 const rr = new RickRolled(5000, true, document.querySelector('all-my-secret-api-keys'));
 const ll = new LazyLoader({ lines: 5,
                             throttle: 500,
