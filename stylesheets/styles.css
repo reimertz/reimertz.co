@@ -845,6 +845,9 @@ header p {
       content: '';
       background: black;
       opacity: 0.045; }
+      @media only screen and (max-width: 480px) {
+        .projects .project:before {
+          width: 50%; } }
     .projects .project:hover:before {
       opacity: 0.09; }
     .projects .project:hover {
@@ -868,9 +871,11 @@ header p {
       display: block;
       position: absolute;
       opacity: 0;
-      transition: 300ms; }
+      transition: 300ms;
+      font-size: 1.2rem; }
       .projects .project span b {
-        color: #1BFF90; }
+        color: #1BFF90;
+        font-size: 2rem; }
     @media only screen and (max-width: 480px) {
       .projects .project {
         display: block; }
