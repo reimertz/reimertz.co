@@ -73,11 +73,12 @@ header {
     }
 
     img {
-      height: 150px;
+      height: 200px;
       display: inline-block;
       z-index: 0;
       opacity: 0.65;
       transition: opacity 200ms filter 2000ms;
+      object-fit: contain;
     }
 
     span {
@@ -106,7 +107,7 @@ header {
       }
 
       img {
-        max-width: 50%;
+        max-width: 100%;
         height: auto;
 
         &:hover {
@@ -115,15 +116,15 @@ header {
       }
 
       span {
-        position: absolute;
+        position: relative;
         opacity: 1;
         color: black;
         background: transparent;
-        left: inherit !important;
-        width: 50%;
-        top: inherit !important;
-        vertical-align: top;
-        display: inline;
+
+        display: inline-block;
+      }
+      b {
+        font-size: 1.2rem;
       }
     }
   }
