@@ -29,13 +29,14 @@ header {
   position: relative;
 
   .project {
+    cursor: pointer;
     display: inline-block;
     position: relative;
-    transition: opacity 250ms;
+    transition: opacity 500ms;
     margin: 2rem 2rem 2rem 0;
 
     body[data-project-is-hovered="true"] &:not(:hover) {
-      opacity: 0.1  ;
+      opacity: 0.2;
     }
 
     &:before {
@@ -50,7 +51,7 @@ header {
       transform: translateZ(-80rem);
       content:'';
       background: black;
-      opacity: 0.045;
+      opacity: 0.15;
 
       @include small {
         width: 50%;
@@ -58,7 +59,7 @@ header {
     }
 
     &:hover:before {
-      opacity: 0.09;
+      opacity: 0.2;
     }
 
     &:hover {
