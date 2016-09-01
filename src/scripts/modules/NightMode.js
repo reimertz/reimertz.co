@@ -3,7 +3,7 @@ import * as SunCalc from 'suncalc'
 
 const html = document.querySelector('html')
 
-fetch('http://ip-api.com/json')
+fetch('//ip-api.com/json')
   .then((response) => {
     return response.json()
   })
