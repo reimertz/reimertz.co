@@ -31,6 +31,7 @@
     "watchify": "^3.7.0"
   },
   "dependencies": {
-    "gulp-jade": "^1.1.0"
+    "gulp-jade": "^1.1.0",
+    "suncalc": "^1.7.0"
   }
 }

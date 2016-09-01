@@ -1,0 +1,38 @@
+@keyframes nightMode {
+  0% {
+    background-color: white;
+    -webkit-filter: invert(0);
+  }
+
+  100% {
+    background-color: black;
+    -webkit-filter: invert(100%);
+  }
+}
+
+@keyframes nightModeImg {
+  0% {
+    -webkit-filter: invert(0);
+  }
+
+  100% {
+    -webkit-filter: invert(100%);
+  }
+}
+
+
+.inverted {
+  animation-fill-mode: forwards;
+  animation-duration: 1500ms;
+  animation-name: nightMode;
+  animation-delay: 2000ms;
+
+  img {
+    animation-fill-mode: forwards;
+    animation-duration: 1500ms;
+    animation-name: nightMode;
+    animation-delay: 3500ms;
+
+  }
+
+}
