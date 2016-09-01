@@ -3,6 +3,7 @@ extends ../layouts/default
 block content
   all-my-secret-api-keys
   main.tre-d
+    p-3d(three-d-text="night-mode").night-mode night-mode
     header
       include partials/box
       include partials/box
@@ -10,6 +11,7 @@ block content
       include partials/box
       img-3d.me
       p-3d(three-d-text="").writer
+
     section.projects
       header
         p-3d-medium(three-d-text="my most recent work/hacks..").green-bg my most recent work/hacks..
