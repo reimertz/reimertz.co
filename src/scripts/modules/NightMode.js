@@ -1,4 +1,5 @@
-//npm install suncalc --save
+require('es6-promise').polyfill()
+require('isomorphic-fetch')
 import * as SunCalc from 'suncalc'
 
 const html = document.querySelector('html')

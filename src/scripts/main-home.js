@@ -1,7 +1,3 @@
-require('es6-promise').polyfill()
-require('isomorphic-fetch')
-
-
 import Writer from './modules/Writer';
 import Translater from './modules/Translater';
 import RickRolled from './modules/RickRolled';
