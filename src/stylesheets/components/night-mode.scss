@@ -86,7 +86,6 @@
   animation-direction:forwards;
   animation-fill-mode: forwards;
   animation-duration: 1500ms;
-  color: $green;
 
   img {
     animation-fill-mode: forwards;
@@ -96,6 +95,10 @@
 
 .night-mode-off {
   animation-name: nightModeOff;
+
+  .night-mode {
+    color: $red;
+  }
 
   img {
     animation-name: nightModeOffImg;
@@ -107,6 +110,11 @@
 
   img {
     animation-name: nightModeImg;
+  }
+
+  .night-mode {
+    color: $green;
+     filter: invert(1);
   }
 }
 

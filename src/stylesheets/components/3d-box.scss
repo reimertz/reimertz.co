@@ -29,7 +29,7 @@ $box-colors: #ee324b, #1BFF90, #D001D0, wheat;
 }
 
 a-box {
-  cursor: pointer;
+  cursor: not-allowed;
   display: inline-block;
   margin-right: $box-size/32;
   width: $box-size;
