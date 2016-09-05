@@ -3,7 +3,7 @@ extends ../layouts/default
 block content
   all-my-secret-api-keys
   main.tre-d
-    p-3d(three-d-text="night-mode").night-mode night-mode
+    p-3d(three-d-text="night-mode" data-night-mode-toggle).night-mode night-mode [x]
     header
       include partials/box
       include partials/box

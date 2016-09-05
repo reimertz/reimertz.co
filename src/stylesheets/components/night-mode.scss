@@ -32,35 +32,81 @@
   }
 }
 
+@keyframes nightModeOff {
+  0% {
+    background-color: black;
+    filter: invert(100%);
+  }
+
+  100% {
+    background-color: white;
+    filter: invert(0);
+  }
+}
+
+@keyframes nightModeOffImg {
+  0% {
+    filter: invert(100%);
+  }
+
+  100% {
+    filter: invert(0);
+
+  }
+}
+
+@keyframes nightModeOffButton {
+  0% {
+    opacity: 1;
+    filter: invert(1);
+  }
+
+  100% {
+    opacity: 0;
+    filter: invert(0);
+  }
+}
+
+
 .night-mode {
-  opacity: 0;
+  display: block;
+  opacity: 1;
   float: right;
   padding-top: 0;
   margin-top: 0;
-  color: #1BFF90;
+  color: $red;
   animation-delay: 2000ms;
   transition: 1500ms;
+  cursor: pointer;
+  z-index: 1000;
+  position: relative;
 }
 
-.inverted {
+[class*="night-mode-o"] {
+  animation-direction:forwards;
   animation-fill-mode: forwards;
   animation-duration: 1500ms;
-  animation-name: nightMode;
-  animation-delay: 2000ms;
+  color: $green;
 
   img {
     animation-fill-mode: forwards;
     animation-duration: 1500ms;
-    animation-name: nightMode;
-    animation-delay: 3500ms;
-
-  }
-
-  .night-mode {
-    animation-fill-mode: forwards;
-    animation-duration: 1500ms;
-    animation-name: nightModeButton;
-    animation-delay: 2000ms;
-
   }
 }
+
+.night-mode-off {
+  animation-name: nightModeOff;
+
+  img {
+    animation-name: nightModeOffImg;
+  }
+}
+
+.night-mode-on {
+  animation-name: nightMode;
+
+  img {
+    animation-name: nightModeImg;
+  }
+}
+

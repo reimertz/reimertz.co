@@ -1,6 +1,7 @@
 @import '../components/3d-me';
 @import '../components/lazy-loader';
 
+
 main {
   display: block;
   position: relative;
@@ -27,6 +28,10 @@ header {
   padding: 0;
   text-align: left;
   position: relative;
+
+  ol {
+    display: block;
+  }
 
   .project {
     cursor: pointer;

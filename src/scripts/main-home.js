@@ -1,9 +1,11 @@
+require('es6-promise').polyfill()
+
 import Writer from './modules/Writer';
 import Translater from './modules/Translater';
 import RickRolled from './modules/RickRolled';
 import LazyLoader from './modules/LazyLoader';
 import CursorFriend from './modules/CursorFriend';
-//import NightMode from './modules/NightMode';
+import NightMode from './modules/NightMode';
 
 const echo = require('echo-js')(document.body);
 const introText = `hi, my name is piérre reimertz.
