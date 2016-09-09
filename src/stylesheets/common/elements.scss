@@ -48,20 +48,21 @@ $link-colors: #1BFF90;
 
 p, p-3d {
   @each $color in $link-colors {
-    $i: index($link-colors, $color);
+  $i: index($link-colors, $color);
 
-    a:nth-child(n + #{$i}) {
-      padding: 0 0.5rem;
-      color: $color;
-      background-color: black;
-      text-decoration: none;
+  a:nth-child(n + #{$i}) {
+    padding: 0 0.5rem;
+    color: $color;
+    background-color: black;
+    text-decoration: none;
 
-      &:hover {
-        color: white;
-        background-color: $color;
-      }
+    &:hover {
+      color: white;
+      background-color: $color;
     }
   }
+}
+
 }
 
 p {
