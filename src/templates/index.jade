@@ -14,8 +14,12 @@ block content
 
     section.projects
       header
-        p-3d-medium(three-d-text="my most recent work/hacks..").green-bg my most recent work/hacks..
+        p-3d-medium(three-d-text="my most recent work/hacks..").green-bg my most recent work/hacks/talks..
       ol
+        li.project
+          a(href="https://youtu.be/LHu8rwLK5sA" target="_blank")
+            img(data-lazy="/images/projects/nordic_js.gif")
+          span.red #[b nordic.js] i gave a lightning talk at Nordic.js about cross-browser privacy vulnerability.
         li.project
           a(href="http://opentracing.io" target="_blank")
             img(data-lazy="/images/projects/opentracing.gif")
@@ -24,6 +28,10 @@ block content
           a(href="http://github.com/reimertz/lagom" target="_blank")
             img(data-lazy="/images/projects/lagom.gif")
           span #[b lagom] simplistic presentation generator
+        li.project
+          a(href="http://jsbin.com/gozelij/14" target="_blank")
+            img(data-lazy="/images/projects/write-something.gif")
+          span #[b write-something] just me messing around with observable sequences
         li.project
           a(href="http://github.com/reimertz/push" target="_blank")
             img(data-lazy="/images/projects/push.png" style="background: white;")
