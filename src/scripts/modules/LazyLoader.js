@@ -62,30 +62,28 @@ export default class LazyLoader {
     if (this._throttler) return
     if (this._elements.length === 0) return this.stop()
 
-    this._throttler = requestAnimationFrame(() => {
-      return setTimeout(() => {
-        this._throttler = false
+    this._throttler = setTimeout(() => {
+      this._throttler = false
 
-        this._elements = this._elements.map(element => {
-          if (element === false) return false
-          if (element.nodeName !== "IMG") return false
+      this._elements = this._elements.map(element => {
+        if (element === false) return false
+        if (element.nodeName !== "IMG") return false
 
-          if ((element.getBoundingClientRect().top - this.offset)  < document.body.scrollTop) {
-            this.queue(element)
-            return false
-          }
+        if ((element.getBoundingClientRect().top - this.offset)  < document.body.scrollTop) {
+          this.queue(element)
+          return false
+        }
 
-          else {
-            return element
-          }
-        })
+        else {
+          return element
+        }
+      })
 
-        this._elements = this._elements.filter(element => {
-          if (element) return element
-        })
+      this._elements = this._elements.filter(element => {
+        if (element) return element
+      })
 
-      }, this.throttle)
-    })
+    }, this.throttle)
   }
 
   queue(element) {
@@ -102,11 +100,9 @@ export default class LazyLoader {
     element.addEventListener('load', this.onLoad, false)
 
     if (!!this.fakeSlowness && (Math.random() <= (this.fakeSlowness.percentageOfImages))) {
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          element.src = element.getAttribute(this.attribute)
-        }, this.fakeSlowness.delayBeforeFetch())
-      })
+      setTimeout(() => {
+        element.src = element.getAttribute(this.attribute)
+      }, this.fakeSlowness.delayBeforeFetch())
     }
     else {
       element.src = element.getAttribute(this.attribute)

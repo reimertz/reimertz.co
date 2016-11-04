@@ -9,8 +9,7 @@ export default class Translater {
     this.xRotation = xRotation
     this.yRotation = yRotation
     this.el = element
-    this.frame = false
-    this.processingEvent = false
+    this.throttler = false
     this.moveEvent = isMobile ? 'touchmove' : 'mousemove'
 
     this.handleScroll = this.handleScroll.bind(this)
@@ -24,7 +23,6 @@ export default class Translater {
         y = this.yRotation - scrolledPercentage
 
     this.el.style.transform = `rotateX(${x}deg) rotateY(${y}deg)`
-    this.processingEvent = false
   }
 
   handleMove(clientX, clientY){
@@ -32,18 +30,20 @@ export default class Translater {
         y = (clientX / window.innerWidth) * this.yRotation
 
     this.el.style.transform = `rotateX(${x}deg) rotateY(${y}deg)`
-    this.processingEvent = false
   }
 
   handleEvent(event) {
-    if (this.processingEvent) return
+    if(this.throttler) return
 
-    this.processingEvent = true
+    this.throttler = setTimeout(() => {
 
-    requestAnimationFrame(() => {
-      if(isMobile) this.handleScroll(window.scrollY)
-      else         this.handleMove(event.clientX, event.clientY)
-    })
+      this.throttler = false
+      requestAnimationFrame(() => {
+        if(isMobile) this.handleScroll(window.scrollY)
+        else         this.handleMove(event.clientX, event.clientY)
+      })
+    }, 50)
+
   }
 
   start() {

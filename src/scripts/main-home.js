@@ -4,10 +4,7 @@ import Writer from './modules/Writer'
 import Translater from './modules/Translater'
 import RickRolled from './modules/RickRolled'
 import LazyLoader from './modules/LazyLoader'
-//import CursorFriend from './modules/CursorFriend'
-import ProjectListener from './modules/ProjectListener'
-import fetch from 'isomorphic-fetch'
-import * as SunCalc from 'suncalc'
+import CursorFriend from './modules/CursorFriend'
 import NightMode from './modules/NightMode'
 
 const echo = require('echo-js')(document.body)
@@ -32,7 +29,7 @@ const ll = new LazyLoader({ lines: 5,
                             }
                           })
 
-const cF = new ProjectListener({selector: '.projects'})
+const cF = new CursorFriend({selector: '.project'})
 requestAnimationFrame(() => {
   writer.start()
   translater.start()

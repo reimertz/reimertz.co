@@ -72,7 +72,7 @@ export default class RickRolled {
       this.el = document.currentScript.parentNode
     }
 
-    this.index = 0
+    this.index = -1
     this.delay = delay || 3000
     this.interval = false
     this.shouldHide = shouldHide || false
@@ -85,6 +85,10 @@ export default class RickRolled {
     this.el.innerHTML = mdRolled[this.index]
 
     if (this.printToConsole) console.log(mdRolled[this.index])
+
+    this.timeout = setTimeout(() => {
+      this.swap()
+    }, this.delay)
   }
 
   start() {
@@ -92,11 +96,7 @@ export default class RickRolled {
 
     if (this.shouldHide) this.el.style.display = 'none'
 
-    this.timeout = requestAnimationFrame(() => {
-      return setTimeout(() => {
-        this.swap()
-      }, this.delay)
-    })
+    this.swap()
   }
 
   stop() {
