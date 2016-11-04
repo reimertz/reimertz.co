@@ -2,17 +2,18 @@ import fetch from 'isomorphic-fetch'
 import * as SunCalc from 'suncalc'
 
 const html = document.querySelector('html')
+const button = document.querySelector('[data-night-mode-toggle]')
 let isNightMode = false
 
 
-function toggleNightMode(buttonEl) {
+function toggleNightMode() {
   const buttonReplaceArgs = isNightMode ?  ['✓', 'x'] : ['x', '✓']
   const list = html.getAttribute('class')
   let newList = isNightMode ? list.replace('night-mode-on', '') : `${list} night-mode-on`
 
   html.setAttribute('class', newList)
 
-  buttonEl.innerHTML = buttonEl.innerHTML.replace(buttonReplaceArgs[0], buttonReplaceArgs[1])
+  button.innerHTML = button.innerHTML.replace(buttonReplaceArgs[0], buttonReplaceArgs[1])
 
   isNightMode = !isNightMode
 }
@@ -29,6 +30,6 @@ fetch('https://geo-location.api.reimertz.co')
   })
 
 
-document.querySelector('[data-night-mode-toggle]').addEventListener('click', (e) => {
+button.addEventListener('click', (e) => {
   toggleNightMode(e.target)
 })
