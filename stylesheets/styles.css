@@ -380,7 +380,8 @@ html {
   font: normal 15px / 1.33333 monospace;
   color: black;
   overflow-x: hidden;
-  overflow-y: auto; }
+  overflow-y: auto;
+  background: white; }
   @media only screen and (max-width: 480px) {
     html {
       font-size: 0.5rem; }
@@ -398,7 +399,6 @@ body {
   position: relative;
   padding-top: 10vh;
   max-width: 100vw;
-  background: white;
   transition: background-color 500ms;
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
@@ -409,11 +409,6 @@ main, footer {
   max-width: 60rem;
   margin: 0 auto;
   position: relative; }
-
-main {
-  -webkit-flex: 1 0 auto;
-      -ms-flex: 1 0 auto;
-          flex: 1 0 auto; }
 
 p a:nth-child(n + 1), p-3d a:nth-child(n + 1) {
   padding: 0 0.5rem;
@@ -707,6 +702,72 @@ img-3d {
     background-size: inherit;
     content: ''; }
 
+@-webkit-keyframes nightMode {
+  0% {
+    background-color: white; }
+  100% {
+    background-color: black; } }
+
+@keyframes nightMode {
+  0% {
+    background-color: white; }
+  100% {
+    background-color: black; } }
+
+@-webkit-keyframes nightModeOff {
+  0% {
+    background-color: black; }
+  100% {
+    background-color: white; } }
+
+@keyframes nightModeOff {
+  0% {
+    background-color: black; }
+  100% {
+    background-color: white; } }
+
+.night-mode {
+  display: block;
+  opacity: 1;
+  float: right;
+  padding-top: 0;
+  margin-top: 0;
+  color: #ee324b;
+  -webkit-animation-delay: 2000ms;
+          animation-delay: 2000ms;
+  transition: 1500ms;
+  cursor: pointer;
+  z-index: 1000;
+  position: relative; }
+
+[class*="night-mode-o"] {
+  -webkit-animation-direction: forwards;
+          animation-direction: forwards;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-duration: 1500ms;
+          animation-duration: 1500ms; }
+
+.night-mode-off {
+  -webkit-animation-name: nightModeOff;
+          animation-name: nightModeOff; }
+  .night-mode-off .night-mode {
+    color: #ee324b; }
+
+.night-mode-on {
+  -webkit-animation-name: nightMode;
+          animation-name: nightMode; }
+  .night-mode-on p-3d:not(.night-mode), .night-mode-on span {
+    color: white; }
+  .night-mode-on img-3d:after {
+    -webkit-filter: invert(1);
+            filter: invert(1); }
+  .night-mode-on :before {
+    -webkit-filter: invert(1);
+            filter: invert(1); }
+  .night-mode-on .night-mode {
+    color: #1BFF90; }
+
 @-webkit-keyframes iGrow {
   0% {
     height: 0; }
@@ -728,7 +789,9 @@ img-3d {
           animation-name: iGrow;
   background-size: 20.619rem 30rem;
   width: 20.619rem;
-  transition: 2s filter linear; }
+  transition: 2s -webkit-filter linear;
+  transition: 2s filter linear;
+  transition: 2s filter linear, 2s -webkit-filter linear; }
   a-box:hover + a-box + a-box + a-box + .me:after {
     opacity: 1;
     background-image: url("/images/me3.png");
@@ -824,12 +887,15 @@ header p {
   padding: 0;
   text-align: left;
   position: relative; }
+  .projects ol {
+    display: block; }
   .projects .project {
     display: inline-block;
     position: relative;
-    transition: opacity 250ms;
     margin: 2rem 2rem 2rem 0; }
-    body[data-project-is-hovered="true"] .projects .project:not(:hover) {
+    body[data-project-is-hovered="true"] .projects .project:not(:hover) :before, body[data-project-is-hovered="true"] .projects .project:not(:hover) span {
+      opacity: 0; }
+    body[data-project-is-hovered="true"] .projects .project:not(:hover) img {
       opacity: 0.1; }
     .projects .project:before {
       pointer-events: none;
@@ -844,7 +910,8 @@ header p {
               transform: translateZ(-80rem);
       content: '';
       background: black;
-      opacity: 0.045; }
+      opacity: 0.045;
+      transition: opacity 250ms; }
       @media only screen and (max-width: 480px) {
         .projects .project:before {
           width: 50%; } }
@@ -857,11 +924,11 @@ header p {
       .projects .project:hover img {
         opacity: 1; }
     .projects .project img {
-      height: 150px;
+      transition: opacity 250ms;
+      height: 175px;
       display: inline-block;
       z-index: 0;
-      opacity: 0.65;
-      transition: opacity 200ms filter 2000ms; }
+      opacity: 0.65; }
     .projects .project span {
       padding: 1rem;
       top: 100%;
@@ -871,7 +938,7 @@ header p {
       display: block;
       position: absolute;
       opacity: 0;
-      transition: 300ms;
+      transition: opacity 250ms;
       font-size: 1.2rem; }
       .projects .project span b {
         color: #1BFF90;

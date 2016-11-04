@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html class="night-mode-off">
   <head>
     <title>reimertz.co</title>
     <meta charset="utf-8">
     <meta name="description" content="Where the web makes sense">
-    <meta name="keywords" content="Pierre Reimertz Web Developer Designer Epic LOL Hacker">
+    <meta name="keywords" content="Pierre Reimertz Web Developer">
     <meta name="author" content="Piérre Reimertz">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
     <link rel="stylesheet" type="text/css" href="stylesheets/styles.css">
+  </head>
+  <body>
     <script type="text/javascript">
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -16,12 +18,10 @@
       
       ga('create', 'UA-61798566-1', 'auto');
       ga('send', 'pageview');
-      
     </script>
-  </head>
-  <body>
     <all-my-secret-api-keys></all-my-secret-api-keys>
     <main class="tre-d">
+      <p-3d three-d-text="night-mode" data-night-mode-toggle class="night-mode">night-mode [x]</p-3d>
       <header>
         <a-box>
           <north></north>
@@ -60,18 +60,27 @@
       </header>
       <section class="projects">
         <header>
-          <p-3d-medium three-d-text="my most recent work/hacks.." class="green-bg">my most recent work/hacks..</p-3d-medium>
+          <p-3d-medium three-d-text="my most recent work/hacks.." class="green-bg">my most recent work/hacks/talks..</p-3d-medium>
         </header>
         <ol>
+          <li class="project"><a href="https://youtu.be/LHu8rwLK5sA" target="_blank"><img data-lazy="/images/projects/nordic_js.gif"></a><span class="red"><b>nordic.js</b> i gave a lightning talk at Nordic.js about cross-browser privacy vulnerability.</span></li>
+          <li class="project"><a href="http://opentracing.io" target="_blank"><img data-lazy="/images/projects/opentracing.gif"></a><span><b>opentracing.io</b> collaboration with my lovely girlfriend. she designed, I coded.</span></li>
+          <li class="project"><a href="http://github.com/reimertz/lagom" target="_blank"><img data-lazy="/images/projects/lagom.gif"></a><span><b>lagom</b> simplistic presentation generator</span></li>
+          <li class="project"><a href="http://jsbin.com/gozelij/14" target="_blank"><img data-lazy="/images/projects/write-something.gif"></a><span><b>write-something</b> just me messing around with observable sequences</span></li>
+          <li class="project"><a href="http://github.com/reimertz/push" target="_blank"><img data-lazy="/images/projects/push.png" style="background: white;"></a><span><b>push</b> Deploy static content easily, freely and anonymously</span></li>
+          <li class="project"><a href="http://jsbin.com/palobo/52/edit?js,output" target="_blank"><img data-lazy="/images/projects/685bytesynth.gif"></a><span><b>685byte synth</b> I wanted to create a synth below 1kb with JS only. I succeeded.</span></li>
+          <li class="project"><a href="http://countryparrots.com/" target="_blank"><img data-lazy="/images/projects/parrot_big.gif"></a><span><b>Country Parrots</b> one party parrot for each country</span></li>
+          <li class="project"><a href="https://www.ampli.fi" target="_blank"><img data-lazy="/images/projects/amplifi.gif"></a><span><b>Ampli.fi</b> A twitch-like service for musicians which I co-founded.</span></li>
+          <li class="project"><a href="http://sfmusicalliance.com/" target="_blank"><img data-lazy="/images/projects/sfma.gif"></a><span><b>San Francisco Music Alliance</b> helped a friend design+implement their CMS using prose + github pages. no more wordpress.</span></li>
           <li class="project"><a href="http://trumpcss.com/" target="_blank"><img data-lazy="/images/projects/trump.gif"></a><span><b>trump.css</b> if you want to add a little bit of Trump on your homepage</span></li>
-          <li class="project"><a href="http://bandpage.com/artists" target="_blank"><img data-lazy="/images/projects/bandpage-1.gif"></a><span><b>bandpage + artists</b> I worked at BandPage for 3.5 years</span></li>
           <li class="project"><a href="http://differentperspectiv.es" target="_blank"><img data-lazy="/images/projects/different-perspectives.gif"></a><span><b>Different Perspectives</b> interactive Virtual Reality demos using Google Cardboard to experience situations from Different Perspectives.</span></li>
           <li class="project"><a href="http://brand-colors.com" target="_blank"><img data-lazy="/images/projects/brand-colors.gif"></a><span><b>brand-colors</b> a brand color collection available in sass, less, stylus and css</span></li>
-          <li class="project"><a href="http://bandpage.com/partners/spotify" target="_blank"><img data-lazy="/images/projects/bandpage-2.gif"></a><span><b>bandpage + spotify</b> working together with Ryan Conlan was a blast</span></li>
+          <li class="project"><a href="http://hackforrefugees.com" target="_blank"><img data-lazy="/images/projects/hackforrefugees.gif"></a><span><b>Hack for Refugees</b> nobody can do everything, but everybody can do something</span></li>
           <li class="project"><a href="http://heartcoins.org" target="_blank"><img data-lazy="/images/projects/heartcoins.gif"></a><span><b>HeartCoins</b> currently building a crypto-currency based on good will</span></li>
+          <li class="project"><a href="http://bandpage artists" target="_blank"><img data-lazy="/images/projects/bandpage-1.gif"></a><span><b>bandpage/artists</b> i worked at bandpage(acquired by youtube) for 3.5 years</span></li>
+          <li class="project"><a href="http://bandpage.com/partners/spotify" target="_blank"><img data-lazy="/images/projects/bandpage-2.gif"></a><span><b>bandpage/spotify</b> i did everything from helping out with engineering, design and content. also turned the gig room to the next level.</span></li>
           <li class="project"><a href="http://github.com/reimertz/gyver" target="_blank"><img data-lazy="/images/projects/gyver.gif"></a><span><b>gyver</b> a swiz army knife for all the terminal lovers out there</span></li>
           <li class="project"><a href="http://github.com/reimertz/feel-beats" target="_blank"><img data-lazy="/images/projects/feelbeats.jpg"></a><span><b>feel beats</b> a hardware hack that gives you the feeling of being a drummer</span></li>
-          <li class="project"><a href="http://hackforrefugees.com" target="_blank"><img data-lazy="/images/projects/hackforrefugees.gif"></a><span><b>Hack for Refugees</b> nobody can do everything, but everybody can do something</span></li>
           <li class="project"><a href="http://flag-colors.com" target="_blank"><img data-lazy="/images/projects/flag-colors.gif"></a><span><b>flag colors</b> a flag color collection available in sass, less, stylus and css</span></li>
           <li class="project"><a><img data-lazy="/images/projects/popwars.gif"></a><span><b>pop-wars</b> a popup-based multiplayer game</span></li>
           <li class="project"><a href="https://twitter.com/reimertz/status/693152132875304960" target="_blank"><img data-lazy="/images/projects/nevah.gif"></a><span><b>rickrolled.js</b> soon to be released</span></li>
@@ -88,15 +97,6 @@
     </main>
     <body-scripts>
       <script src="/scripts/main-home.bundle.js"></script>
-      <script 
-          type="text/javascript"
-          size="small"
-          key="freeforall"
-          position="bottom left"
-          email="pierrereimertz+tableflip@gmail.com"
-          message="Hi there, you just found my hack called tableflip."
-          src="//tableflip.co/dist/latest/tableflip.latest.min.js">
-      </script>
     </body-scripts>
   </body>
 </html>
