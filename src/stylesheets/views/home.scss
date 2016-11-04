@@ -36,11 +36,15 @@ header {
   .project {
     display: inline-block;
     position: relative;
-    transition: opacity 250ms;
     margin: 2rem 2rem 2rem 0;
 
     body[data-project-is-hovered="true"] &:not(:hover) {
-      opacity: 0.1  ;
+      :before, span  {
+        opacity: 0;
+      }
+      img {
+        opacity: 0.1;
+      }
     }
 
     &:before {
@@ -56,6 +60,7 @@ header {
       content:'';
       background: black;
       opacity: 0.045;
+      transition: opacity 250ms;
 
       @include small {
         width: 50%;
@@ -78,11 +83,12 @@ header {
     }
 
     img {
+      transition: opacity 250ms;
       height: 175px;
       display: inline-block;
       z-index: 0;
       opacity: 0.65;
-      transition: opacity 200ms filter 2000ms;
+      //transition: opacity 200ms filter 2000ms;
     }
 
     span {
@@ -94,7 +100,8 @@ header {
       display: block;
       position: absolute;
       opacity: 0;
-      transition: 300ms;
+      transition: opacity 250ms;
+      //transition: 250ms;
       font-size: 1.2rem;
 
       b {

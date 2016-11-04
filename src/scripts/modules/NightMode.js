@@ -25,7 +25,7 @@ fetch('https://geo-location.api.reimertz.co')
     const now = +new Date()
     const sunset = +new Date(SunCalc.getTimes(+new Date(), json.lat, json.lon).sunset)
 
-    if(now > sunset) toggleNightMode()
+    if (now > sunset) toggleNightMode()
   })
 
 

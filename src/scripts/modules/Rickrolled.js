@@ -69,39 +69,43 @@ export default class RickRolled {
   constructor (delay, shouldHide, element) {
     if (element) this.el = element;
     else {
-      this.el = document.currentScript.parentNode;
+      this.el = document.currentScript.parentNode
     }
 
-    this.index = 0;
-    this.delay = delay || 3000;
-    this.interval = false;
-    this.shouldHide = shouldHide || false;
+    this.index = 0
+    this.delay = delay || 3000
+    this.interval = false
+    this.shouldHide = shouldHide || false
   }
 
   swap() {
-    this.index = (this.index + 1) % mdRolled.length;
+    this.index = (this.index + 1) % mdRolled.length
 
-    this.el.innerHTML = '';
-    this.el.innerHTML = mdRolled[this.index];
+    this.el.innerHTML = ''
+    this.el.innerHTML = mdRolled[this.index]
 
-    if(this.printToConsole) console.log(mdRolled[this.index]);
+    if (this.printToConsole) console.log(mdRolled[this.index])
   }
 
   start() {
-    if(this.interval) return;
+    if (this.interval) return
 
-    if(this.shouldHide) this.el.style.display = 'none';
+    if (this.shouldHide) this.el.style.display = 'none'
 
-    this.interval = setInterval(() => {this.swap()}, this.delay);
+    this.timeout = requestAnimationFrame(() => {
+      return setTimeout(() => {
+        this.swap()
+      }, this.delay)
+    })
   }
 
   stop() {
-    if(!this.interval) return;
-    clearInterval(this.interval);
-    this.interval = false;
+    if (!this.interval) return
+    clearInterval(this.interval)
+    this.interval = false
   }
 
   pause() {
-    this.stop();
+    this.stop()
   }
 }

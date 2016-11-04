@@ -1,24 +1,27 @@
 require('es6-promise').polyfill()
 
-import Writer from './modules/Writer';
-import Translater from './modules/Translater';
-import RickRolled from './modules/RickRolled';
-import LazyLoader from './modules/LazyLoader';
-import CursorFriend from './modules/CursorFriend';
-import NightMode from './modules/NightMode';
+import Writer from './modules/Writer'
+import Translater from './modules/Translater'
+import RickRolled from './modules/RickRolled'
+import LazyLoader from './modules/LazyLoader'
+//import CursorFriend from './modules/CursorFriend'
+import ProjectListener from './modules/ProjectListener'
+import fetch from 'isomorphic-fetch'
+import * as SunCalc from 'suncalc'
+import NightMode from './modules/NightMode'
 
-const echo = require('echo-js')(document.body);
+const echo = require('echo-js')(document.body)
 const introText = `hi, my name is piérre reimertz.
 
 i am a humble developer@@@#########magician@@@########coder, designer, fake-it-til-you-make-it#######################entrepreneur and everyday hustler.
 extremely addicted of building things.
 
-$http://github.com/reimertz$github$ | $http://twitter.com/reimertz$twitter$ | $mailto:pierre.reimertz@gmail.com$hire me$ `;
+$http://github.com/reimertz$github$ | $http://twitter.com/reimertz$twitter$ | $mailto:pierre.reimertz@gmail.com$hire me$ `
 
 
-const writer = new Writer(document.querySelectorAll('.writer'), introText);
-const translater = new Translater(document.querySelector('.tre-d'), 10, 10);
-const rr = new RickRolled(5000, true, document.querySelector('all-my-secret-api-keys'));
+const writer = new Writer(document.querySelectorAll('.writer'), introText)
+const translater = new Translater(document.querySelector('.tre-d'), 10, 10)
+const rr = new RickRolled(5000, true, document.querySelector('all-my-secret-api-keys'))
 const ll = new LazyLoader({ lines: 5,
                             throttle: 500,
                             checkOnStart: false,
@@ -27,15 +30,13 @@ const ll = new LazyLoader({ lines: 5,
                               percentageOfImages: 0.3
 
                             }
-                          });
-const cF = new CursorFriend({selector: '.project', spanSelector: 'span'});
+                          })
 
-console.log(cF);
-requestAnimationFrame(function(){
-  writer.start();
-  translater.start();
-  rr.start();
-  ll.start();
-  cF.start();
-});
-
+const cF = new ProjectListener({selector: '.projects'})
+requestAnimationFrame(() => {
+  writer.start()
+  translater.start()
+  rr.start()
+  ll.start()
+  cF.start()
+})
