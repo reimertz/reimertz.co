@@ -14,7 +14,7 @@ i am a humble developer@@@#########magician@@@########coder, designer, fake-it-t
 
 creativity is my addiction.
 
-$http://github.com/reimertz$github$ | $http://twitter.com/reimertz$twitter$ | $mailto:pierre.reimertz@gmail.com$hire me$ `
+$http://github.com/reimertz$github$ | $http://twitter.com/reimertz$twitter$ | $https://www.linkedin.com/in/reimertz$linkedin$ | $mailto:pierre.reimertz@gmail.com$hire me$ `
 
 
 const writer = new Writer(document.querySelectorAll('.writer'), introText)
