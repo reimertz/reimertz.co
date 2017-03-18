@@ -71,7 +71,7 @@ gulp.task('assets', (done) => {
 gulp.task('extras', (done) => {
   del.sync('./.build/extras');
 
-  return gulp.src(SRC_DIR + 'extras/*/*')
+  return gulp.src(SRC_DIR + 'extras/**')
     .pipe(gulp.dest('./.build/'));
 });
 
