@@ -18,7 +18,7 @@ function toggleNightMode() {
   isNightMode = !isNightMode
 }
 
-fetch('https://geo-location.api.reimertz.co')
+fetch('https://geo-location.code.reimertz.co')
   .then((response) => {
     return response.json()
   })
