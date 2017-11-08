@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<style>
+body, html, .controls {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 5rem;
+  color: white;
+}
+
+h3 {
+  background-color: white;
+  color: black;
+  padding: 1rem;
+}
+
+video {
+  min-height: 100%;
+  min-width: 100vw;
+}
+
+video, .controls {
+  position: absolute;
+}
+
+.controls {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+}
+
+svg {
+  cursor: pointer;
+  display: inline;
+  fill: white;
+  width: 8rem;
+  padding: 1rem;
+}
+
+svg.pause {
+  display: none;
+}
+
+body[data-playing="true"] svg.pause {
+   display: inline;
+}
+
+body[data-playing="true"] svg.play {
+   display: none;
+}
+
+
+</style>
+<body>
+  <video loop>
+    <source src="https://ia800301.us.archive.org/29/items/home_movies_misc/metal_6_fla_512kb.mp4#t=817" type="video/mp4")/>
+  </video>
+  <audio>
+    <source src="https://github.com/reimertz/reimertz.co-old/raw/gh-pages/audio/Pierre%20Reimertz%20-When%20I%20Go%20Cover.mp3" type="audio/mpeg")/>
+  </audio>
+
+  <section class="controls">
+    <h3><a href="https://reimertz.co">REIMERTZ.CO</a></h3>
+    <h1>PIÉRRE REIMERTZ</h1>
+    <svg class="play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+    </svg>
+    <svg class="pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M0 0h24v24H0z" fill="none"/>
+      <path d="M9 16h2V8H9v8zm3-14C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-4h2V8h-2v8z"/>
+    </svg>
+    <h1>WHEN I GO</h1>
+    <h3>SONG BY <a href="https://www.slowclubband.com/">SLOW CLUB</a></h3>
+  </section>
+  <script>
+  const video = document.querySelector('video')
+  const audio = document.querySelector('audio')
+
+  const playButton = document.querySelector('.play')
+  const pauseButton = document.querySelector('.pause')
+
+  function toggleSong(shouldPlay) {
+    const func = shouldPlay ? 'play' : 'pause'
+
+    document.body.setAttribute('data-playing', shouldPlay)
+
+    video[func]()
+    audio[func]()
+  }
+
+  playButton.addEventListener('click', e => { toggleSong(true) })
+  pauseButton.addEventListener('click', e => {toggleSong(false)})
+
+  </script>
+</body>
+</html>
