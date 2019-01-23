@@ -2251,7 +2251,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 require('es6-promise').polyfill();
 
 var echo = require('echo-js')(document.body);
-var introText = 'hi, my name is pi\xE9rre reimertz.\n\ni am a developer@@@########coder and designer. I love creating things.\n\n$http://github.com/reimertz$github$ | $http://twitter.com/reimertz$twitter$ | $https://www.linkedin.com/in/reimertz$linkedin$ | $mailto:pierre.reimertz@gmail.com$hire me$ ';
+var introText = 'hi, my name is pi\xE9rre reimertz.\n\ni am a developer@@@#########coder and designer. I love creating things.\n\n$http://github.com/reimertz$github$ | $http://twitter.com/reimertz$twitter$ | $https://www.linkedin.com/in/reimertz$linkedin$ | $mailto:pierre.reimertz@gmail.com$hire me$ ';
 
 var writer = new _Writer2.default(document.querySelectorAll('.writer'), introText);
 var translater = new _Translater2.default(document.querySelector('.tre-d'), 10, 10);
